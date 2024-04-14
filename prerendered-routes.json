@@ -1,8 +1,0 @@
-{
-  "routes": [
-    "/config/people",
-    "/config/relations",
-    "/config/types",
-    "/dashboard"
-  ]
-}
