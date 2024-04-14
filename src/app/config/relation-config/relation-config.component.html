@@ -1,0 +1,61 @@
+
+<form class="inline-form" (submit)="addType()">
+  <mat-form-field appearance="outline">
+    <mat-label>Person 1</mat-label>
+    <mat-select [(ngModel)]="newRelation.p1Name" name="person1">
+      <mat-option *ngFor="let person of people" [value]="person.name">
+        {{ person.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Relation Type</mat-label>
+    <mat-select [(ngModel)]="newRelation.type" name="relationType">
+      <mat-option *ngFor="let type of relationTypes" [value]="type.name">
+        <span style="color: {{type.color}}">{{ type.name }}</span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Person 2</mat-label>
+    <mat-select [(ngModel)]="newRelation.p2Name" name="person2">
+      <mat-option *ngFor="let person of people" [value]="person.name">
+        {{ person.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Add relation</button>
+</form>
+
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="p1Name">
+    <th mat-header-cell *matHeaderCellDef> Person 1 </th>
+    <td mat-cell *matCellDef="let element"> {{element.p1Name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef> Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="p2Name">
+    <th mat-header-cell *matHeaderCellDef> Person 2 </th>
+    <td mat-cell *matCellDef="let element"> {{element.p2Name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-stroked-button color="warn" (click)="deleteRelation(element)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

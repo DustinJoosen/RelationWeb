@@ -1,0 +1,101 @@
+
+body {
+  margin: 0;
+}
+
+svg {
+  width: 99vw;
+  height: 99vh;
+  z-index: 1;
+}
+
+.container {
+  /*outline: 1px solid red;*/
+}
+
+.buttons {
+  position: absolute;
+  right: 0;
+  top: 30px;
+}
+
+.buttons button {
+  display: block;
+  background-color: lightgray;
+  border: 1px solid darkgray;
+  width: 40px;
+  height: 35px;
+  border-radius: 3px 0 0 3px;
+  margin-top: 4px;
+  box-shadow: 1px 1px 3px gray;
+  cursor: pointer;
+}
+.buttons button a {
+  color: black;
+}
+
+.button-divider {
+  display: block;
+  height: 2px;
+  width: 40px;
+  background-color: gray;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+.mode-active {
+  border: 2px solid darkgray !important;
+  box-shadow: -5px 2px 3px gray !important;
+}
+
+img {
+  width: 85px;
+  height: 85px;
+  /*overflow: clip;*/
+}
+
+app-legenda {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.person {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid black;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  user-select: none;
+}
+.person::after {
+  content: attr(data-value);
+  position: absolute;
+  width: 100%;
+  min-height: 20px;
+  border: 2px solid black;
+  top: 80px;
+  left: 0;
+  background-color: white;
+}
+.inner-person {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: clip;
+}
+.inner-person img {
+  object-fit: cover;
+  object-position: top;
+}
+
+.selected-person {
+  outline: 8px solid turquoise;
+}

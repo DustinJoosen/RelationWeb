@@ -1,0 +1,52 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+      <textarea matInput
+          cdkTextareaAutosize
+          name="name"
+          [(ngModel)]="names"
+          #autosize="cdkTextareaAutosize"
+          [rows]="4"
+      ></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="addPerson()">Add</button>
+</form>
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-overflow-scroll">
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Current Image Column -->
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef> Image </th>
+    <td mat-cell *matCellDef="let element">
+      <img src="{{element.picture}}" alt="">
+    </td>
+  </ng-container>
+
+  <!-- Image Column -->
+  <ng-container matColumnDef="imageAdd">
+    <th mat-header-cell *matHeaderCellDef> Add Image </th>
+    <td mat-cell *matCellDef="let element">
+      <input type="file"
+         class="form-control"
+         id="UploadimgControlInput"
+         name="image"
+         (change)="setImage($event, element)" />
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-stroked-button color="warn" (click)="deletePerson(element.name)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
