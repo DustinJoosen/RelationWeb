@@ -1,8 +1,0 @@
-{
-  "routes": [
-    "/dashboard",
-    "/people",
-    "/relations",
-    "/types"
-  ]
-}
