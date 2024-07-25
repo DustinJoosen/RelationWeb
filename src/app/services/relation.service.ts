@@ -29,7 +29,7 @@ export class RelationService {
     this.envService.setEnvironment(environment);
   }
 
-  addLocation(relation: Relation) {
+  addRelation(relation: Relation) {
     let environment = this.envService.getEnvironment();
     if (environment == null)
       return;
@@ -58,4 +58,5 @@ export class RelationService {
     }
     return null;
   }
+
 }

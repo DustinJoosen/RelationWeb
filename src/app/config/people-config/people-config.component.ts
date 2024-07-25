@@ -40,7 +40,9 @@ export class PeopleConfigComponent implements OnInit {
   constructor(private personService: PersonService, private imgur: ImgurService) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource<Person>(this.personService.getPeople());
+    let people = this.personService.getPeople();
+    people.reverse();
+    this.dataSource = new MatTableDataSource<Person>(people);
   }
 
   addPerson() {

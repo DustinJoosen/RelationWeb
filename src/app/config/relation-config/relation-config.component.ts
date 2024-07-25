@@ -9,6 +9,7 @@ import {EnvironmentService, Person, Relation, RelationType} from "../../services
 import {MatSelectModule} from "@angular/material/select";
 import {CommonModule, NgIf} from "@angular/common";
 import {RelationService} from "../../services/relation.service";
+import {MatRadioButton, MatRadioChange, MatRadioGroup} from "@angular/material/radio";
 
 @Component({
   selector: 'app-relation-config',
@@ -23,7 +24,9 @@ import {RelationService} from "../../services/relation.service";
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    NgIf
+    NgIf,
+    MatRadioButton,
+    MatRadioGroup
   ],
   providers: [
     CdkColumnDef
@@ -32,13 +35,14 @@ import {RelationService} from "../../services/relation.service";
   styleUrl: './relation-config.component.css'
 })
 export class RelationConfigComponent implements OnInit{
-  displayedColumns: string[] = ['p1Name', 'type', 'p2Name', 'actions'];
+  displayedColumns: string[] = ['p1Name', 'type', 'p2Name', 'feeling', 'actions'];
   dataSource = new MatTableDataSource<Relation>();
 
   newRelation: Relation = {
     p1Name: '',
     type: '',
-    p2Name: ''
+    p2Name: '',
+    feeling: 0,
   };
 
   people: Person[] = [];
@@ -54,17 +58,30 @@ export class RelationConfigComponent implements OnInit{
     this.relationTypes = environment.relationTypes;
     this.people = environment.people;
 
-    this.dataSource = new MatTableDataSource<Relation>(this.relationService.getRelations());
+    let relations = this.relationService.getRelations();
+
+    relations.sort((a, b) => {
+      if (a.p1Name < b.p1Name) return -1;
+      if (a.p1Name > b.p1Name) return 1;
+      return 0;
+    });
+
+    this.dataSource = new MatTableDataSource<Relation>(relations);
   }
 
   addType() {
-    this.relationService.addLocation(this.newRelation);
+    this.relationService.addRelation(this.newRelation);
     this.ngOnInit();
   }
 
   deleteRelation(relation: Relation) {
     this.relationService.removeRelation(relation);
     this.ngOnInit();
+  }
+
+  onFeelingChange($event: MatRadioChange, element: Relation) {
+    this.relationService.removeRelation(element);
+    this.relationService.addRelation(element);
   }
 }
 

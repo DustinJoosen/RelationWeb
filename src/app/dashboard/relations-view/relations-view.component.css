@@ -4,17 +4,20 @@ body {
 }
 
 svg {
-  width: 99vw;
-  height: 99vh;
+  width: 20000px !important;
+  height: 10000px !important;
+  margin-right: 5px;
+  overflow-x: scroll;
+  outline: 2px dashed red;
   z-index: 1;
 }
 
 .container {
-  /*outline: 1px solid red;*/
+  width: 100%;
 }
 
 .buttons {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 30px;
 }
@@ -55,7 +58,7 @@ img {
 }
 
 app-legenda {
-  position: absolute;
+  position: fixed;
   right: 10px;
   bottom: 10px;
 }
@@ -99,3 +102,25 @@ app-legenda {
 .selected-person {
   outline: 8px solid turquoise;
 }
+
+.hidden-person {
+  filter: grayscale(100%);
+}
+
+.line-invisible {
+  display: none;
+}
+
+
+.person-with-negative-relation {
+  border: 4px solid tomato !important;
+}
+
+.person-with-neutral-relation {
+  border: 4px solid gray !important;
+}
+
+.person-with-positive-relation {
+  border: 4px solid darkgreen !important;
+}
+

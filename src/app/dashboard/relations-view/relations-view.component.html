@@ -1,9 +1,9 @@
-<div class="container" #container>
+<div class="container" #container style="width: 2000px">
   <div
     *ngFor="let person of people; let i = index"
     class="person"
     [attr.data-value]="person.name"
-    [class]="this.relationChangerElements.includes(person.name) ? 'selected-person' : ''"
+    [class]="cssClassOfPerson(person)"
     #person
     id="p-{{person.name.replace(' ','_')}}"
     (click)="trySelectRelation(person.name)"
@@ -23,22 +23,23 @@
           [attr.x2]="connection.line.ex"
           [attr.y2]="connection.line.ey"
           (click)="selectLine(connection.relation)"
-          style="stroke:{{connection.line.color}}; stroke-width:3; cursor: pointer" />
+          [class]="lineClass(connection)"
+          style="stroke:{{connection.line.color}}; stroke-width:3; cursor: pointer;" />
   </svg>
   <div *ngIf="buttonsVisible" class="buttons">
     <!-- Links -->
     <button title="Configure people">
-      <a href="config/people">
+      <a href="people">
         <mat-icon>people_alt</mat-icon>
       </a>
     </button>
     <button title="Configure relations">
-      <a href="config/relations">
+      <a href="relations">
         <mat-icon>favorite</mat-icon>
       </a>
     </button>
     <button title="Configure relation types">
-      <a href="config/types">
+      <a href="types">
         <mat-icon>link</mat-icon>
       </a>
     </button>
@@ -49,6 +50,9 @@
     </button>
     <button title="Relation mode (R)" (click)="setMode(1)" [class]="this.mode == 1 ? 'mode-active' : ''">
       <mat-icon>sync_alt</mat-icon>
+    </button>
+    <button title="Link mode (L)" (click)="setMode(2)" [class]="this.mode == 2 ? 'mode-active' : ''">
+      <mat-icon>search</mat-icon>
     </button>
     <!-- Relation thingies -->
     <div *ngIf="this.mode === 1">

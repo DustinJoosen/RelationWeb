@@ -48,6 +48,18 @@
     <td mat-cell *matCellDef="let element"> {{element.p2Name}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="feeling">
+    <th mat-header-cell *matHeaderCellDef>Feeling</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-radio-group [(ngModel)]="element.feeling" (change)="onFeelingChange($event, element)">
+        <mat-radio-button [value]="-1">Negative</mat-radio-button>
+        <mat-radio-button [value]="0">Neutral</mat-radio-button>
+        <mat-radio-button [value]="1">Positive</mat-radio-button>
+      </mat-radio-group>
+    </td>
+  </ng-container>
+
+
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let element">

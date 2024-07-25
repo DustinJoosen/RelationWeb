@@ -35,7 +35,9 @@ export class RelationTypeConfigComponent implements OnInit {
   constructor(private relationTypeService: RelationtypeService) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource<RelationType>(this.relationTypeService.getTypes());
+    let types = this.relationTypeService.getTypes();
+    types.reverse();
+    this.dataSource = new MatTableDataSource<RelationType>(types);
   }
 
   addType() {

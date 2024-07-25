@@ -8,7 +8,7 @@ import {RelationConfigComponent} from "./config/relation-config/relation-config.
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: RelationsViewComponent },
-  { path: 'config/types', component: RelationTypeConfigComponent },
-  { path: 'config/people', component: PeopleConfigComponent },
-  { path: 'config/relations', component: RelationConfigComponent }
+  { path: 'types', component: RelationTypeConfigComponent },
+  { path: 'people', component: PeopleConfigComponent },
+  { path: 'relations', component: RelationConfigComponent }
 ];
